@@ -22,6 +22,7 @@ LOAD ADMIN VARIABLES TO RUNTIME;
 -- Add the backend servers and create the replication group
 INSERT INTO mysql_servers(hostgroup_id,hostname,port) VALUES (1,'172.16.31.1',3306);
 INSERT INTO mysql_servers(hostgroup_id,hostname,port) VALUES (1,'172.16.31.2',3306);
+INSERT INTO mysql_servers(hostgroup_id,hostname,port) VALUES (1,'172.16.31.3',3306);
 INSERT INTO mysql_replication_hostgroups VALUES (1,2,'read_only','wp-cluster');
 LOAD MYSQL SERVERS TO RUNTIME;
 SAVE MYSQL SERVERS TO DISK;
