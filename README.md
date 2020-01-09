@@ -21,7 +21,7 @@ I hope that by the end of the day we would have this setup:
     Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
                                                           |- HAproxy (127.0.0.1) -> lxc? -> Redis			
                                                           \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
-
+    
     Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --\
                                                           |- HAproxy (127.0.0.1) -> lxc? -> Redis			
                                                           \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
