@@ -18,6 +18,7 @@ The setup will look like this:
 - lxc3 (standby/failover node)
 
 I hope that by the end of the day we would have this setup:
+
     Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
                                                           |- HAproxy (127.0.0.1) -> lxc? -> Redis			
                                                           \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
@@ -30,6 +31,7 @@ I hope that by the end of the day we would have this setup:
 
 
 But we should start with a simpler setup:
+
     Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
                                                           |- Redis	private floating IP
                                                           |- MySQL private loating IP
