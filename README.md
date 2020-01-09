@@ -13,25 +13,27 @@ You will also receive 2 public, floating IPs for your site and 2 private IPs for
 Nginx, uWSGI and Wordpress are already preconfigured to work with the MySQL and Redis on lxc1.
 
 The setup will look like this:
- lxc1(web and db node), lxc2(web and db node, lxc3 (standby/failover node)
+- lxc1(web and db node)
+- lxc2(web and db node)
+- lxc3 (standby/failover node)
 
 I hope that by the end of the day we would have this setup:
- Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
-                                                       |- HAproxy (127.0.0.1) -> lxc? -> Redis			
-                                                       \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
+    Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
+                                                          |- HAproxy (127.0.0.1) -> lxc? -> Redis			
+                                                          \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
 
- Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --\
-                                                       |- HAproxy (127.0.0.1) -> lxc? -> Redis			
-                                                       \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
+    Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --\
+                                                          |- HAproxy (127.0.0.1) -> lxc? -> Redis			
+                                                          \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
 
  In the above setup, "lxc?" means, the container, which is currently hosting the Master resource of the specific service(MySQL or Redis).
 
 
 But we should start with a simpler setup:
- Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
-                                                       |- Redis	private floating IP
-                                                       |- MySQL private loating IP
- Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --/
+    Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
+                                                          |- Redis	private floating IP
+                                                          |- MySQL private loating IP
+    Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --/
 
 Whay you don't see on the above graphs is corosync and pacemaker. They are used to check the status of the nodes and take actions, in case one of the nodes dies.
 This includes, move the IP to another, online machine. Demote and promote master-slave resources.
