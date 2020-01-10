@@ -37,8 +37,9 @@ But we should start with a simpler setup:
                                                           |- MySQL private loating IP
     Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --/
 
-Whay you don't see on the above graphs is corosync and pacemaker. They are used to check the status of the nodes and take actions, in case one of the nodes dies.
+What you don't see on the above diagrams is corosync and pacemaker. They are used to check the status of the nodes and take actions, in case one of the nodes dies.
 This includes, move the IP to another, online machine. Demote and promote master-slave resources.
+Also you have to know, that both HAproxy and ProxySQL have connections to all 3 instances of Redis and MySQL and they are responsible for directing the traffic to the correct backend server.
 
 So the tasks are:
 1. Setup Redis replication with master lxc1 and slaves lxc2 and lxc3
@@ -53,6 +54,8 @@ So the tasks are:
 
 After all of the above works, test the setup and also migrate the IPs and master-slave resouces, to test the failover.
 
+
+
 Next if all of the above works, we should setup HAproxy, Sentinel and ProxySQL.
 
 But first. Why would we need those if the above setup works?
@@ -61,6 +64,8 @@ But first. Why would we need those if the above setup works?
 - ProxySQL allows you to make read/write split and load balancing of queries
 
 If you want fast failover, you can't use GCP floating as it requires at least 10sec with the fastests health checks.
+
+
 
 So the next tasks are:
 
@@ -72,5 +77,6 @@ So the next tasks are:
 6. Configure HAproxy on each web node
 7. Configure Sentinel on each web node
 
+Verify both Redis and MySQL
 
 Alternatives to ProxySQL are Vitess, MaxScale and MySQL Router.
