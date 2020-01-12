@@ -4,7 +4,7 @@
 2. Configure the corosync instances. Since we would run each cluster in separate bridge, you can safely use multicast, but you can also use unicast, for situations like the network in GCP.
 ```
 totem {
-        nodeid: 1358
+        nodeid: 1
         version: 2
         hold:  190
         token: 310  	    # How long before declaring a token lost (ms)
@@ -39,15 +39,15 @@ totem {
 nodelist {
         node {
                 ring0_addr: 10.0.0.1
-                nodeid: 1358
+                nodeid: 1
         }
         node {
                 ring0_addr: 10.0.0.2
-                nodeid: 1359
+                nodeid: 2
         }
         node {
                 ring0_addr: 10.0.0.5
-                nodeid: 1360
+                nodeid: 3
         }
 }
 
@@ -63,6 +63,7 @@ amf {
         mode: disabled
 }
 ```
+Important part of the above configuration is the node list, which should list all possible nodes in the cluster. Also in the "totem { }" section you MUST specify different node ids.
 3. Add the pacemaker service in "/etc/corosync/service.d/"
 ```
 service {
@@ -72,6 +73,7 @@ service {
 }
 ```
 4. Since the corosync configuration should be the same on all nodes in the cluster, you should sync /etc/corosync to the other two nodes in the cluster.
+!!! Except the nodeid in the "totem { }" section of corosync.conf. That MUST be unique.
 
 # Configuring Pacemaker
 This is relatively easy with crmsh. You have all the needed configurations in each folder, for each service.
