@@ -74,12 +74,40 @@ service {
 ```
 4. Since the corosync configuration should be the same on all nodes in the cluster, you should sync /etc/corosync to the other two nodes in the cluster.
 !!! Except the nodeid in the "totem { }" section of corosync.conf. That MUST be unique.
+5. Start the corosync service:
+   /etc/init.d/corosync start
+
+Corosync should also start pacemaker, which will start a few other processes that are used to manage the servers.
 
 # Configuring Pacemaker
 This is relatively easy with crmsh. You have all the needed configurations in each folder, for each service.
 
+Now as corosync has started pacemaker you can configure your cluster with the crm command:
+    crm configure
+In this prompt you can paste the per-service crm configrations that I have provided below:
 * [Nginx](../nginx/Corosync+Pacemaker.md)
 * [HAproxy](../haproxy/Corosync+Pacemaker.md)
 * [ProxySQL](../proxysql/Corosync+Pacemaker.md)
 * [Redis](../redis/Corosync+Pacemaker.md)
+
+The only two global properties you need to setup are:
+* disable the Shoot The Other Node In The Head option, that will try to shutdown other nodes in case of split brain
+    property stonith-enabled=false
+* disable maintenance mode. In fact, when you setup your cluster for the first time, this property will be missing, we are adding it here, so once we need to put the whole clsuter in maintenance mode, we don't need to remember the name of the property
+    property maintenance-mode=false
+
+Finally when you have added all of your configuration, you can list it by issuing the "show" command:
+    crm(live)configure# show
+
+If everything is fine, ask the pacemaker to check your configuration by issuing the "verify" command:
+    crm(live)configure# verify
+    crm(live)configure#
+If there are no errors, now you can commit your changes to the cluster:
+    crm(live)configure# commit
+
+Congratulations you have successfully configured your corosync and pacemaker.
+
+You can easily vew the current status by issuing any of these commands:
+    crm status
+    crm_mond -Arf
 
