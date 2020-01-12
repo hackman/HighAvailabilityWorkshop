@@ -92,22 +92,34 @@ In this prompt you can paste the per-service crm configrations that I have provi
 
 The only two global properties you need to setup are:
 * disable the Shoot The Other Node In The Head option, that will try to shutdown other nodes in case of split brain
-```property stonith-enabled=false```
+```
+  property stonith-enabled=false
+```
 * disable maintenance mode. In fact, when you setup your cluster for the first time, this property will be missing, we are adding it here, so once we need to put the whole clsuter in maintenance mode, we don't need to remember the name of the property
-```property maintenance-mode=false```
+```
+  property maintenance-mode=false
+```
 
 Finally when you have added all of your configuration, you can list it by issuing the "show" command:
-```crm(live)configure# show```
+```
+  crm(live)configure# show
+```
 
 If everything is fine, ask the pacemaker to check your configuration by issuing the "verify" command:
-```crm(live)configure# verify
-    crm(live)configure#```
+```
+  crm(live)configure# verify
+  crm(live)configure#
+```
 If there are no errors, now you can commit your changes to the cluster:
-```crm(live)configure# commit```
+```
+  crm(live)configure# commit
+```
 
 Congratulations you have successfully configured your corosync and pacemaker.
 
 You can easily vew the current status by issuing any of these commands:
-```crm status
-    crm_mond -Arf```
+```
+  crm status
+  crm_mond -Arf
+```
 
