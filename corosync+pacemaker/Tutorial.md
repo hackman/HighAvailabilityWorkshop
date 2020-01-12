@@ -83,7 +83,10 @@ Corosync should also start pacemaker, which will start a few other processes tha
 This is relatively easy with crmsh. You have all the needed configurations in each folder, for each service.
 
 Now as corosync has started pacemaker you can configure your cluster with the crm command:
-    crm configure
+```
+  # crm configure
+  crm(live)configure#
+```
 In this prompt you can paste the per-service crm configrations that I have provided below:
 * [Nginx](../nginx/Corosync+Pacemaker.md)
 * [HAproxy](../haproxy/Corosync+Pacemaker.md)
@@ -93,11 +96,11 @@ In this prompt you can paste the per-service crm configrations that I have provi
 The only two global properties you need to setup are:
 * disable the Shoot The Other Node In The Head option, that will try to shutdown other nodes in case of split brain
 ```
-  property stonith-enabled=false
+  crm(live)configure# property stonith-enabled=false
 ```
 * disable maintenance mode. In fact, when you setup your cluster for the first time, this property will be missing, we are adding it here, so once we need to put the whole clsuter in maintenance mode, we don't need to remember the name of the property
 ```
-  property maintenance-mode=false
+  crm(live)configure# property maintenance-mode=false
 ```
 
 Finally when you have added all of your configuration, you can list it by issuing the "show" command:
@@ -117,9 +120,9 @@ If there are no errors, now you can commit your changes to the cluster:
 
 Congratulations you have successfully configured your corosync and pacemaker.
 
-You can easily vew the current status by issuing any of these commands:
+You can easily vew the current status by issuing any of these shell commands:
 ```
-  crm status
-  crm_mond -Arf
+  # crm status
+  # crm_mond -Arf
 ```
 
