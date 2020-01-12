@@ -80,3 +80,14 @@ So the next tasks are:
 Verify both Redis and MySQL
 
 Alternatives to ProxySQL are Vitess, MaxScale and MySQL Router.
+
+
+
+In this workshop, we are not going to discuss Shared storage options. You have to know, that uploading your application (in our case Wordpress) should deploy all neccessery files for the app.
+However, most of the time, the apps work with user supplied files, and if you allow uploads, you should make sure that the uploads are available on all web nodes.
+This usually is achived by using a shared storage, which can be(but not limited to) any of the following options:
+- NFS exported folder from one of the nodes
+- GlusterFS/BeeGFS/MooseFS
+- Amazon S3/GCP Cloud Storage
+- DRBD + OCFS2
+
