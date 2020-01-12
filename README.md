@@ -82,7 +82,7 @@ So the next tasks are:
 
 Verify both Redis and MySQL
 
-Alternatives to ProxySQL are Vitess, MaxScale and MySQL Router.
+Alternatives to [ProxySQL](http://www.proxysql.com/) are [Vitess](http://vitess.io/), [MaxScale](https://github.com/mariadb-corporation/MaxScale) and [MySQL Router](https://dev.mysql.com/doc/mysql-router/2.1/en/).
 
 
 
