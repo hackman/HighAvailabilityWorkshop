@@ -45,11 +45,11 @@ So the tasks are:
 1. [Setup Redis replication with master lxc1 and slaves lxc2 and lxc3](redis/README.md)
 2. [Setup MySQL replication with master lxc1 and slaves lxc2 and lxc3](mysql/README.md)
 3. [Setup Pacemaker](corosync+pacemaker/Tutorial.md)
-  1. [Add the two public IPs and add constraint for them, not to run on the same node.](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
-  2. [Configure master-slave resource for the Redis service](redis/Corosync+Pacemaker.md)
-  3. [Add a private floating IP that will go with the Master Redis resouce](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
-  4. [Configure master-slave resource for the MySQL service](mysql/Corosync+Pacemaker.md)
-  5. [Add a private floating IP that will go with the Master MySQL resouce](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
+* 3.1. [Add the two public IPs and add constraint for them, not to run on the same node.](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
+* 3.2. [Configure master-slave resource for the Redis service](redis/Corosync+Pacemaker.md)
+* 3.3. [Add a private floating IP that will go with the Master Redis resouce](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
+* 3.4. [Configure master-slave resource for the MySQL service](mysql/Corosync+Pacemaker.md)
+* 3.5. [Add a private floating IP that will go with the Master MySQL resouce](corosync+pacemaker/Tutorial.md#adding-a-floating-ip)
 4. Make sure cron tasks for the wpsite run only on a single machine in the cluster
 
 After all of the above works, test the setup and also migrate the IPs and master-slave resouces, to test the failover.
