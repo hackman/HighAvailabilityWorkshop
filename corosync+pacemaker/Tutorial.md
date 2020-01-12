@@ -106,6 +106,18 @@ The only two global properties you need to setup are:
 Finally when you have added all of your configuration, you can list it by issuing the "show" command:
 ```
   crm(live)configure# show
+  node node1
+  node node2
+  node node3
+  property cib-bootstrap-options: \
+        have-watchdog=false \
+        dc-version=1.1.18-3.el6-bfe4e80420 \
+        cluster-infrastructure="classic openais (with plugin)" \
+        expected-quorum-votes=3 \
+        stonith-enabled=false \
+        maintenance-mode=false \
+        no-quorum-policy=ignore \
+        last-lrm-refresh=1578852361
 ```
 
 If everything is fine, ask the pacemaker to check your configuration by issuing the "verify" command:
