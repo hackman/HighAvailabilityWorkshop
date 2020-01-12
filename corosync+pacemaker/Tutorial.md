@@ -138,3 +138,21 @@ You can easily vew the current status by issuing any of these shell commands:
   # crm_mond -Arf
 ```
 
+In this directory, there are also two files ocf:heartbeat:mysql and ocf:heartbeat:redis, which are modified versions of the original OCF scripts, which better support for MySQL and Redis failover. You should copy those to "/usr/lib/ocf/resource.d/heartbeat/".
+
+# Adding a floating IP
+In crm shell configration enter the following lines:
+```
+  # crm configure
+```
+
+```
+primitive ip-130 IPaddr2 \
+        params ip=85.14.7.130 cidr_netmask=26 nic=eth0 \
+        op monitor interval=10s \
+        meta target-role=Started
+```
+* ip-130 is the name of the resouce
+* IPaddr2 is the ocf script that will be used for this IP. It will do arping, when it moves an IP address to a new machine
+* "op monitor interval=10s", means that every 10s pacemaker will check if the IP is still UP on the machine it last brought it up
+* from the params, nic is the interface on which, this IP should be configured
