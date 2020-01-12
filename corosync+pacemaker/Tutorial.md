@@ -156,3 +156,22 @@ primitive ip-130 IPaddr2 \
 * IPaddr2 is the ocf script that will be used for this IP. It will do arping, when it moves an IP address to a new machine
 * "op monitor interval=10s", means that every 10s pacemaker will check if the IP is still UP on the machine it last brought it up
 * from the params, nic is the interface on which, this IP should be configured
+
+If you want this IP to stay on specific node, add a location constraint like this one:
+```
+location ip-130-on-node1 ip-130 inf: node1
+```
+Or if you want this IP not to go on specific node:
+```
+location ip-130-not-on-node1 ip-130 -inf: node1
+```
+If you want the IP to go, where a specific Master-Slave resource is Master, you need the following co-location constraint:
+```
+colocation ip-130-with-mysql-master inf: ip-130 ms_mysql:Master
+```
+If you want the IP to go, where a specific resource is started, you can use the following co-location constraint:
+```
+colocation ip-130-with-nginx inf: ip-130 nginx
+```
+Where "nginx" is the name of the resource.
+
