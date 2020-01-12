@@ -76,8 +76,8 @@ service {
 # Configuring Pacemaker
 This is relatively easy with crmsh. You have all the needed configurations in each folder, for each service.
 
-* [Nginx](../blob/nginx/Corosync+Pacemaker.md)
-* [HAproxy](../blob/haproxy/Corosync+Pacemaker.md)
-* [ProxySQL](../blob/proxysql/Corosync+Pacemaker.md)
-* [Redis](../blob/redis/Corosync+Pacemaker.md)
+* [Nginx](../nginx/Corosync+Pacemaker.md)
+* [HAproxy](../haproxy/Corosync+Pacemaker.md)
+* [ProxySQL](../proxysql/Corosync+Pacemaker.md)
+* [Redis](../redis/Corosync+Pacemaker.md)
 
