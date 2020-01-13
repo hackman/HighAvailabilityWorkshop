@@ -1,4 +1,6 @@
-This workshop will start with you, receiving the 3 IPs of your containers.
+This workshop will start with you, receiving the cluster number, you will be setting up and a list with IPs to access your nodes.
+The list per cluster can be seen [here](participants/). In it you will also find your public and private IPs.
+
 On each container you will have preinstalled the following software:
 - Nginx
 - uWSGI
@@ -9,8 +11,7 @@ On each container you will have preinstalled the following software:
 - HAproxy
 - Redis
 - Redis-Sentinel
-You will also receive 2 public, floating IPs for your site and 2 private IPs for your MySQL and Redis installations.
-Nginx, uWSGI and Wordpress are already preconfigured to work with the MySQL and Redis on lxc1.
+Nginx, uWSGI and Wordpress are already preconfigured to work with the MySQL and Redis on localhost. We will have to reconfigure them to use the floating IPs for the services.
 
 The setup will look like this:
 - lxc1(web and db node)
