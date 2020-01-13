@@ -1,0 +1,21 @@
+Connecting via ssh to your containers:
+
+Node1:
+  ssh -p10031 root@ha.1h.cx
+Node2:
+  ssh -p10032 root@ha.1h.cx
+Node3:
+  ssh -p10033 root@ha.1h.cx
+
+Your private IP range is 10.0.13.0/24 on eth1:
+  node1: 10.0.13.1
+  node2: 10.0.13.2
+  node3: 10.0.13.3
+
+Redis floating IP: 10.0.13.4
+MySQL floating IP: 10.0.13.5
+
+Floatint public IPs on eth0:
+  85.14.7.136
+  85.14.7.137
+
