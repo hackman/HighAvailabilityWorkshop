@@ -90,7 +90,7 @@ In this workshop, we are not going to discuss Shared storage options. You have t
 However, most of the time, the apps work with user supplied files, and if you allow uploads, you should make sure that the uploads are available on all web nodes.
 This usually is achived by using a shared storage, which can be(but not limited to) any of the following options:
 - NFS exported folder from one of the nodes
-- GlusterFS/BeeGFS/MooseFS
+- [GlusterFS](https://www.gluster.org/)/[BeeGFS](https://www.beegfs.io/content/)/[MooseFS](https://moosefs.com/)/[Lustre FS](http://lustre.org/)
 - Amazon S3/GCP Cloud Storage
-- DRBD + OCFS2
+- [DRBD](https://www.linbit.com/en/drbd-community/) + [OCFS2](https://oss.oracle.com/projects/ocfs2/) [tutorial](https://wiki.clusterlabs.org/wiki/Dual_Primary_DRBD_%2B_OCFS2)
 
