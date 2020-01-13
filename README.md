@@ -20,12 +20,13 @@ The setup will look like this:
 I hope that by the end of the day we would have this setup:
 
     Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
-                                                          |- HAproxy (127.0.0.1) -> lxc? -> Redis			
-                                                          \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
-    
+      /\                                                  |- HAproxy (127.0.0.1) -> lxc? -> Redis
+      || both floating                                    \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
+      \/
     Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --\
                                                           |- HAproxy (127.0.0.1) -> lxc? -> Redis			
                                                           \- ProxySQL(172.0.0.1) -> lxc? -> MySQL
+    lxc3 - standby
 
  In the above setup, "lxc?" means, the container, which is currently hosting the Master resource of the specific service(MySQL or Redis).
 
@@ -33,9 +34,12 @@ I hope that by the end of the day we would have this setup:
 But we should start with a simpler setup:
 
     Public IP 1 --> lxc1 -> Nginx -> uWSGI(unix socket) --\
-                                                          |- Redis	private floating IP
-                                                          |- MySQL private loating IP
+      /\                                                  |- Redis private floating IP
+      || both floating                                    |
+      \/                                                  |- MySQL private loating IP
     Public IP 2 --> lxc2 -> Nginx -> uWSGI(unix socket) --/
+    
+    lxc3 - standby
 
 What you don't see on the above diagrams is corosync and pacemaker. They are used to check the status of the nodes and take actions, in case one of the nodes dies.
 This includes, move the IP to another, online machine. Demote and promote master-slave resources.
