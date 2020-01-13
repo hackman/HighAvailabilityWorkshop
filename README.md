@@ -73,10 +73,10 @@ If you want fast failover, you can't use GCP floating as it requires at least 10
 So the next tasks are:
 
 5. Configure ProxySQL on each web node
-5.1. create a monitor user for the proxysql in the MySQL
-5.2. start the proxysql instance
-5.3. configure it via the SQL interface
-5.4. add aliases for the admin interface
+* 5.1. create a monitor user for the proxysql in the MySQL
+* 5.2. start the proxysql instance
+* 5.3. configure it via the SQL interface
+* 5.4. add aliases for the admin interface
 6. Configure HAproxy on each web node
 7. Configure Sentinel on each web node
 
