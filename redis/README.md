@@ -15,4 +15,13 @@ This can be done via different ways. We will discuss two possible solutions, Cor
 
 If you want to use Corosync + Pacemaker for cluster management, then look at the Corosync+Pacemaker.md
 
-If you want to use Sentinel for cluster management, look at Sentinel.md
+If you want to use Sentinel for cluster management, look at [Sentinel.md](Sentinel.md)
+
+
+
+
+Since our WP site is configured to work with redis on localhost, we can either reconfigure the session save handler to work with the floating IP that we are going to setup,
+or use one simple iptables magic, to make it work with the floating IP without reconfiguring anything:
+   # iptables -t nat -A OUTPUT -j DNAT -d 127.0.0.1 -p tcp --dport 6379 --to 10.0.10.4
+
+This way, when we setup the HAproxy for Redis, we can simply remove this rule from the firewall and have it working with the haproxy setup.
