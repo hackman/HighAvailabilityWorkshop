@@ -16,6 +16,6 @@ Redis floating IP: 10.0.13.4
 MySQL floating IP: 10.0.13.5
 
 Floatint public IPs on eth0:
-  85.14.7.136
-  85.14.7.137
+  85.14.7.136/26
+  85.14.7.137/26
 
