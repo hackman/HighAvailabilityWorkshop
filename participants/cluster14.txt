@@ -1,11 +1,11 @@
 Connecting via ssh to your containers:
 
 Node1:
-  ssh -p10111 root@ha.1h.cx
+  ssh -p10131 root@ha.1h.cx
 Node2:
-  ssh -p10112 root@ha.1h.cx
+  ssh -p10132 root@ha.1h.cx
 Node3:
-  ssh -p10113 root@ha.1h.cx
+  ssh -p10133 root@ha.1h.cx
 
 Your private IP range is 10.0.23.0/24 on eth1:
   node1: 10.0.23.1
