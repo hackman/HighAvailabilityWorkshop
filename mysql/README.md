@@ -1,10 +1,15 @@
 
 Setting up MySQL replication: https://dev.mysql.com/doc/refman/5.7/en/replication-howto.html
 
+You can use the my.cnf provided in this dir, but keep in mind that you need to create /var/log/mysql
+
 Possible ways to copy the DB: https://dev.mysql.com/doc/refman/5.7/en/replication-snapshot-method.html
 
 Dump all databases with mysqldump:
  mysqldump --all-databases --master-data > dbdump.db
+
+In the dump, there should be a line like this one:
+ CHANGE MASTER TO MASTER_LOG_FILE='binary.000001', MASTER_LOG_POS=154;
 
 If you are using LVM:
  mysql_commands="
